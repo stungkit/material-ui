@@ -226,3 +226,63 @@ This change also applies to the `Menu` since it uses `MenuList`.
 Selecting a `MenuItem` will update the focus and `tabindex` as before.
 
 The `autoFocus` prop in `MenuList` does not set `tabindex="0"` on the `List` component anymore. It will always stay as `-1`.
+
+### Deprecated APIs removed
+
+APIs that were deprecated earlier have been removed in v9.
+
+#### TextField deprecated props removed
+
+Use the [text-field-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#text-field-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/text-field-props <path>
+```
+
+The deprecated `TextField` props have been removed.
+Use the `slotProps` prop instead:
+
+```diff
+ <TextField
+-  InputProps={CustomInputProps}
+-  inputProps={CustomHtmlInputProps}
+-  SelectProps={CustomSelectProps}
+-  InputLabelProps={CustomInputLabelProps}
+-  FormHelperTextProps={CustomFormHelperTextProps}
++  slotProps={{
++    input: CustomInputProps,
++    htmlInput: CustomHtmlInputProps,
++    select: CustomSelectProps,
++    inputLabel: CustomInputLabelProps,
++    formHelperText: CustomFormHelperTextProps,
++  }}
+ />
+```
+
+Use the [autocomplete-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#autocomplete-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/autocomplete-props <path>
+```
+
+If you render a `TextField` from `Autocomplete`, the `params` shape also changed to match the new `TextField` API:
+
+```diff
+ <Autocomplete
+   renderInput={(params) => (
+     <TextField
+       {...params}
+-      inputProps={{
+-        ...params.inputProps,
+-        autoComplete: 'new-password',
++      slotProps={{
++        ...params.slotProps,
++        htmlInput: {
++          ...params.slotProps.htmlInput,
++          autoComplete: 'new-password',
++        },
+       }}
+     />
+   )}
+ />
+```
