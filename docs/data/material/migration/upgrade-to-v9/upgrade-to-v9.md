@@ -118,6 +118,46 @@ This also fixes an issue where props like `color` were consumed by the Grid inst
 </Grid>
 ```
 
+### TablePagination numbers are formatted by default
+
+Pagination numbers in `TablePagination` are now formatted using `Intl.NumberFormat` according to the locale.
+For example, `103177` is displayed as `103,177` in `en-US` or `103.177` in `de-DE`.
+
+To opt out of number formatting, provide a custom `labelDisplayedRows` function:
+
+```jsx
+<TablePagination
+  labelDisplayedRows={({ from, to, count }) =>
+    `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`
+  }
+/>
+```
+
+Or when using a locale:
+
+```jsx
+import { enUS } from '@mui/material/locale';
+
+const theme = createTheme(
+  {
+    palette: {
+      primary: { main: '#1976d2' },
+    },
+  },
+  enUS,
+  {
+    components: {
+      MuiTablePagination: {
+        defaultProps: {
+          labelDisplayedRows: ({ from, to, count }) =>
+            `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`,
+        },
+      },
+    },
+  },
+);
+```
+
 ### Theme
 
 `MuiTouchRipple` has been removed from the theme `components` types (`ComponentsProps`, `ComponentsOverrides`, and `ComponentsVariants`).
