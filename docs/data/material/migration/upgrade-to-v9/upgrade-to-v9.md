@@ -494,6 +494,26 @@ If you render a `TextField` from `Autocomplete`, the `params` shape also changed
        }}
      />
    )}
+```
+
+#### Alert deprecated props removed
+
+Use the [alert-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#alert-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/alert-props <path>
+```
+
+The deprecated `Alert` props have been removed.
+Use the `slots` and `slotProps` props instead:
+
+```diff
+ <Alert
+   onClose={handleClose}
+-  components={{ CloseIcon: MyCloseIcon, CloseButton: MyCloseButton }}
+-  componentsProps={{ closeButton: { size: 'large' }, closeIcon: { fontSize: 'small' } }}
++  slots={{ closeIcon: MyCloseIcon, closeButton: MyCloseButton }}
++  slotProps={{ closeButton: { size: 'large' }, closeIcon: { fontSize: 'small' } }}
  />
 ```
 
