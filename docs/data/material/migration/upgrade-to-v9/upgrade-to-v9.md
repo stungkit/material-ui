@@ -496,3 +496,23 @@ If you render a `TextField` from `Autocomplete`, the `params` shape also changed
    )}
  />
 ```
+
+#### Accordion deprecated props removed
+
+Use the [accordion-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#accordion-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/accordion-props <path>
+```
+
+The deprecated `Accordion` props have been removed.
+Use the `slots` and `slotProps` props instead:
+
+```diff
+ <Accordion
+-  TransitionComponent={CustomTransition}
+-  TransitionProps={{ unmountOnExit: true }}
++  slots={{ transition: CustomTransition }}
++  slotProps={{ transition: { unmountOnExit: true } }}
+ >
+```
