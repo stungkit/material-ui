@@ -582,6 +582,30 @@ If you were already using the `surplus` key via `componentsProps`, move it to `s
 +<AvatarGroup slotProps={{ surplus: { className: 'my-class' } }}>
 ```
 
+#### Backdrop deprecated props removed
+
+Use the [backdrop-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#backdrop-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/backdrop-props <path>
+```
+
+The following deprecated `Backdrop` props have been removed:
+
+- `components` — use `slots` instead
+- `componentsProps` — use `slotProps` instead
+- `TransitionComponent` — use `slots.transition` instead
+
+```diff
+ <Backdrop
+-  components={{ Root: CustomRoot }}
+-  componentsProps={{ root: { className: 'my-class' } }}
+-  TransitionComponent={CustomTransition}
++  slots={{ root: CustomRoot, transition: CustomTransition }}
++  slotProps={{ root: { className: 'my-class' } }}
+ />
+```
+
 #### Typography deprecated CSS classes removed
 
 The deprecated `paragraph` CSS class has been removed.
