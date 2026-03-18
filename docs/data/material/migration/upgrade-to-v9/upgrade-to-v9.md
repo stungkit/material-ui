@@ -423,6 +423,42 @@ If you render a `TextField` from `Autocomplete`, the `params` shape also changed
    )}
 ```
 
+#### Tooltip deprecated props removed
+
+Use the [tooltip-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#tooltip-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/tooltip-props <path>
+```
+
+The following deprecated props have been removed from the `Tooltip` component:
+
+- `components` → use `slots`
+- `componentsProps` → use `slotProps`
+- `PopperComponent` → use `slots.popper`
+- `PopperProps` → use `slotProps.popper`
+- `TransitionComponent` → use `slots.transition`
+- `TransitionProps` → use `slotProps.transition`
+
+```diff
+ <Tooltip
+   title="Hello World"
+-  components={{ Popper: CustomPopper, Tooltip: CustomTooltip, Transition: CustomTransition, Arrow: CustomArrow }}
+-  componentsProps={{ popper: { placement: 'top' }, tooltip: { className: 'custom' }, arrow: { className: 'arrow' } }}
+-  PopperComponent={CustomPopper}
+-  PopperProps={{ disablePortal: true }}
+-  TransitionComponent={CustomTransition}
+-  TransitionProps={{ timeout: 500 }}
++  slots={{ popper: CustomPopper, tooltip: CustomTooltip, transition: CustomTransition, arrow: CustomArrow }}
++  slotProps={{
++    popper: { placement: 'top', disablePortal: true },
++    tooltip: { className: 'custom' },
++    transition: { timeout: 500 },
++    arrow: { className: 'arrow' },
++  }}
+ />
+```
+
 #### Alert deprecated props removed
 
 Use the [alert-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#alert-props) below to migrate the code as described in the following section:
