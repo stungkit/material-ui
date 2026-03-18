@@ -477,6 +477,23 @@ Use the combination of `.MuiAccordionSummary-gutters` and `.MuiAccordionSummary-
  }
 ```
 
+#### Avatar deprecated props removed
+
+Use the [avatar-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#avatar-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/avatar-props <path>
+```
+
+The following deprecated props have been removed from the `Avatar` component:
+
+- `imgProps` → use `slotProps.img`
+
+```diff
+-<Avatar imgProps={{ crossOrigin: 'anonymous', referrerPolicy: 'no-referrer' }} />
++<Avatar slotProps={{ img: { crossOrigin: 'anonymous', referrerPolicy: 'no-referrer' } }} />
+```
+
 #### AvatarGroup deprecated props removed
 
 Use the [avatar-group-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#avatar-group-props) below to migrate the code as described in the following section:
