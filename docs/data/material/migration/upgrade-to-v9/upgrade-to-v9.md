@@ -572,6 +572,36 @@ The following deprecated props have been removed from the `Badge` component:
  />
 ```
 
+#### Snackbar deprecated props removed
+
+Use the [snackbar-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#snackbar-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/snackbar-props <path>
+```
+
+The following deprecated `Snackbar` props have been removed:
+
+- `ClickAwayListenerProps` — use `slotProps.clickAwayListener` instead
+- `ContentProps` — use `slotProps.content` instead
+- `TransitionComponent` — use `slots.transition` instead
+- `TransitionProps` — use `slotProps.transition` instead
+
+```diff
+ <Snackbar
+-  ClickAwayListenerProps={CustomClickAwayListenerProps}
+-  ContentProps={CustomContentProps}
+-  TransitionComponent={CustomTransition}
+-  TransitionProps={CustomTransitionProps}
++  slots={{ transition: CustomTransition }}
++  slotProps={{
++    clickAwayListener: CustomClickAwayListenerProps,
++    content: CustomContentProps,
++    transition: CustomTransitionProps,
++  }}
+ />
+```
+
 #### Typography deprecated CSS classes removed
 
 The deprecated `paragraph` CSS class has been removed.
