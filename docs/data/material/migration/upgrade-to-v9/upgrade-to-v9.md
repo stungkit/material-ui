@@ -608,6 +608,28 @@ The following deprecated props have been removed from the `Badge` component:
  />
 ```
 
+#### Slider deprecated props removed
+
+Use the [slider-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#slider-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/slider-props <path>
+```
+
+The following deprecated props have been removed from the `Slider` component:
+
+- `components` — use `slots` instead
+- `componentsProps` — use `slotProps` instead
+
+```diff
+ <Slider
+-  components={{ Track: CustomTrack }}
+-  componentsProps={{ track: { testid: 'test-id' } }}
++  slots={{ track: CustomTrack }}
++  slotProps={{ track: { testid: 'test-id' } }}
+ />
+```
+
 #### Snackbar deprecated props removed
 
 Use the [snackbar-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#snackbar-props) below to migrate the code as described in the following section:
