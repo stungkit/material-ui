@@ -854,6 +854,70 @@ Use the `slotProps` prop instead:
 +    },
 ```
 
+#### Menu deprecated props removed
+
+The following deprecated props have been removed:
+
+- `MenuListProps` — use `slotProps.list` instead
+- `PaperProps` — use `slotProps.paper` instead
+- `TransitionProps` — use `slotProps.transition` instead
+
+```diff
+ <Menu
+-  MenuListProps={{ disablePadding: true }}
+-  PaperProps={{ elevation: 12 }}
+-  TransitionProps={{ timeout: 500 }}
++  slotProps={{
++    list: { disablePadding: true },
++    paper: { elevation: 12 },
++    transition: { timeout: 500 },
++  }}
+ />
+```
+
+If you pass these props via `Select`'s `MenuProps`, update them the same way:
+
+```diff
+ <Select
+   MenuProps={{
+-    PaperProps: { style: { maxHeight: 200 } },
+-    MenuListProps: { disablePadding: true },
+-    TransitionProps: { timeout: 500 },
++    slotProps: {
++      paper: { style: { maxHeight: 200 } },
++      list: { disablePadding: true },
++      transition: { timeout: 500 },
++    },
+   }}
+ />
+```
+
+#### Popover deprecated props removed
+
+The following deprecated props have been removed:
+
+- `BackdropComponent` — use `slots.backdrop` instead
+- `BackdropProps` — use `slotProps.backdrop` instead
+- `PaperProps` — use `slotProps.paper` instead
+- `TransitionComponent` — use `slots.transition` instead
+- `TransitionProps` — use `slotProps.transition` instead
+
+```diff
+ <Popover
+-  BackdropComponent={CustomBackdrop}
+-  BackdropProps={{ invisible: true }}
+-  PaperProps={{ elevation: 12 }}
+-  TransitionComponent={CustomTransition}
+-  TransitionProps={{ timeout: 500 }}
++  slots={{ backdrop: CustomBackdrop, transition: CustomTransition }}
++  slotProps={{
++    backdrop: { invisible: true },
++    paper: { elevation: 12 },
++    transition: { timeout: 500 },
++  }}
+ />
+```
+
 #### Tabs deprecated props removed
 
 Use the [tabs-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#tabs-props) below to migrate the code as described in the following section:

@@ -602,7 +602,7 @@ export default function MaterialDesignComponents() {
                 open={Boolean(anchor)}
                 anchorEl={anchor}
                 onClose={() => setAnchor(null)}
-                PaperProps={{ variant: 'outlined', elevation: 0 }}
+                slotProps={{ paper: { variant: 'outlined', elevation: 0 } }}
               >
                 <MenuItem>
                   <ListItemIcon>
