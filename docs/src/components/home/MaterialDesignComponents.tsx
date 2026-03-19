@@ -292,6 +292,30 @@ export function buildTheme(): ThemeOptions {
               '& .MuiAlert-icon': {
                 color: (theme.vars || theme).palette.primaryDark[800],
               },
+              variants: [
+                {
+                  props: { variant: 'standard', color: 'info' },
+                  style: [
+                    {
+                      backgroundColor: (theme.vars || theme).palette.primary[50],
+                      color: (theme.vars || theme).palette.primary[600],
+                      border: '1px solid',
+                      borderColor: alpha(theme.palette.primaryDark[100], 0.5),
+                      '& .MuiAlert-icon': {
+                        color: (theme.vars || theme).palette.primary[500],
+                      },
+                    },
+                    theme.applyDarkStyles({
+                      backgroundColor: alpha(theme.palette.primaryDark[700], 0.5),
+                      color: (theme.vars || theme).palette.primaryDark[50],
+                      borderColor: alpha(theme.palette.primaryDark[500], 0.2),
+                      '& .MuiAlert-icon': {
+                        color: (theme.vars || theme).palette.primaryDark[50],
+                      },
+                    }),
+                  ],
+                },
+              ],
             },
             theme.applyDarkStyles({
               '& .MuiAlert-icon': {
@@ -331,25 +355,6 @@ export function buildTheme(): ThemeOptions {
             padding: 0,
             fontWeight: 500,
           },
-          standardInfo: ({ theme }) => [
-            {
-              backgroundColor: (theme.vars || theme).palette.primary[50],
-              color: (theme.vars || theme).palette.primary[600],
-              border: '1px solid',
-              borderColor: alpha(theme.palette.primaryDark[100], 0.5),
-              '& .MuiAlert-icon': {
-                color: (theme.vars || theme).palette.primary[500],
-              },
-            },
-            theme.applyDarkStyles({
-              backgroundColor: alpha(theme.palette.primaryDark[700], 0.5),
-              color: (theme.vars || theme).palette.primaryDark[50],
-              borderColor: alpha(theme.palette.primaryDark[500], 0.2),
-              '& .MuiAlert-icon': {
-                color: (theme.vars || theme).palette.primaryDark[50],
-              },
-            }),
-          ],
           icon: {
             paddingTop: 1,
             paddingBottom: 0,

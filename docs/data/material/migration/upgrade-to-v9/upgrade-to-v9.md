@@ -367,100 +367,68 @@ The following deprecated members have been removed from the `useAutocomplete` ho
  } = useAutocomplete(props);
 ```
 
-#### TextField deprecated props removed
+#### Alert deprecated CSS classes removed
 
-Use the [text-field-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#text-field-props) below to migrate the code as described in the following section:
-
-```bash
-npx @mui/codemod@latest deprecations/text-field-props <path>
-```
-
-The following deprecated props have been removed from the `TextField` component:
-
-- `InputProps` → use `slotProps.input`
-- `inputProps` → use `slotProps.htmlInput`
-- `SelectProps` → use `slotProps.select`
-- `InputLabelProps` → use `slotProps.inputLabel`
-- `FormHelperTextProps` → use `slotProps.formHelperText`
-
-```diff
- <TextField
--  InputProps={CustomInputProps}
--  inputProps={CustomHtmlInputProps}
--  SelectProps={CustomSelectProps}
--  InputLabelProps={CustomInputLabelProps}
--  FormHelperTextProps={CustomFormHelperTextProps}
-+  slotProps={{
-+    input: CustomInputProps,
-+    htmlInput: CustomHtmlInputProps,
-+    select: CustomSelectProps,
-+    inputLabel: CustomInputLabelProps,
-+    formHelperText: CustomFormHelperTextProps,
-+  }}
- />
-```
-
-Use the [autocomplete-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#autocomplete-props) below to migrate the code as described in the following section:
+Use the [alert-classes codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#alert-classes) below to migrate the code as described in the following section:
 
 ```bash
-npx @mui/codemod@latest deprecations/autocomplete-props <path>
+npx @mui/codemod@latest deprecations/alert-classes <path>
 ```
 
-If you render a `TextField` from `Autocomplete`, the `params` shape also changed to match the new `TextField` API:
+The following deprecated `Alert` CSS classes have been removed:
+
+- `standardSuccess` → use `.MuiAlert-standard.MuiAlert-colorSuccess`
+- `standardInfo` → use `.MuiAlert-standard.MuiAlert-colorInfo`
+- `standardWarning` → use `.MuiAlert-standard.MuiAlert-colorWarning`
+- `standardError` → use `.MuiAlert-standard.MuiAlert-colorError`
+- `outlinedSuccess` → use `.MuiAlert-outlined.MuiAlert-colorSuccess`
+- `outlinedInfo` → use `.MuiAlert-outlined.MuiAlert-colorInfo`
+- `outlinedWarning` → use `.MuiAlert-outlined.MuiAlert-colorWarning`
+- `outlinedError` → use `.MuiAlert-outlined.MuiAlert-colorError`
+- `filledSuccess` → use `.MuiAlert-filled.MuiAlert-colorSuccess`
+- `filledInfo` → use `.MuiAlert-filled.MuiAlert-colorInfo`
+- `filledWarning` → use `.MuiAlert-filled.MuiAlert-colorWarning`
+- `filledError` → use `.MuiAlert-filled.MuiAlert-colorError`
+
+If you were using these deprecated class names as `styleOverrides` keys in your theme, use the `variants` array in the `root` override instead:
 
 ```diff
- <Autocomplete
-   renderInput={(params) => (
-     <TextField
-       {...params}
--      inputProps={{
--        ...params.inputProps,
--        autoComplete: 'new-password',
-+      slotProps={{
-+        ...params.slotProps,
-+        htmlInput: {
-+          ...params.slotProps.htmlInput,
-+          autoComplete: 'new-password',
+ const theme = createTheme({
+   components: {
+     MuiAlert: {
+       styleOverrides: {
+-        standardSuccess: { color: 'green' },
+-        standardInfo: { color: 'blue' },
+-        standardWarning: { color: 'orange' },
+-        standardError: { color: 'red' },
+-        outlinedSuccess: { borderColor: 'green' },
+-        outlinedInfo: { borderColor: 'blue' },
+-        outlinedWarning: { borderColor: 'orange' },
+-        outlinedError: { borderColor: 'red' },
+-        filledSuccess: { backgroundColor: 'green' },
+-        filledInfo: { backgroundColor: 'blue' },
+-        filledWarning: { backgroundColor: 'orange' },
+-        filledError: { backgroundColor: 'red' },
++        root: {
++          variants: [
++            { props: { variant: 'standard', color: 'success' }, style: { color: 'green' } },
++            { props: { variant: 'standard', color: 'info' }, style: { color: 'blue' } },
++            { props: { variant: 'standard', color: 'warning' }, style: { color: 'orange' } },
++            { props: { variant: 'standard', color: 'error' }, style: { color: 'red' } },
++            { props: { variant: 'outlined', color: 'success' }, style: { borderColor: 'green' } },
++            { props: { variant: 'outlined', color: 'info' }, style: { borderColor: 'blue' } },
++            { props: { variant: 'outlined', color: 'warning' }, style: { borderColor: 'orange' } },
++            { props: { variant: 'outlined', color: 'error' }, style: { borderColor: 'red' } },
++            { props: { variant: 'filled', color: 'success' }, style: { backgroundColor: 'green' } },
++            { props: { variant: 'filled', color: 'info' }, style: { backgroundColor: 'blue' } },
++            { props: { variant: 'filled', color: 'warning' }, style: { backgroundColor: 'orange' } },
++            { props: { variant: 'filled', color: 'error' }, style: { backgroundColor: 'red' } },
++          ],
 +        },
-       }}
-     />
-   )}
-```
-
-#### Tooltip deprecated props removed
-
-Use the [tooltip-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#tooltip-props) below to migrate the code as described in the following section:
-
-```bash
-npx @mui/codemod@latest deprecations/tooltip-props <path>
-```
-
-The following deprecated props have been removed from the `Tooltip` component:
-
-- `components` → use `slots`
-- `componentsProps` → use `slotProps`
-- `PopperComponent` → use `slots.popper`
-- `PopperProps` → use `slotProps.popper`
-- `TransitionComponent` → use `slots.transition`
-- `TransitionProps` → use `slotProps.transition`
-
-```diff
- <Tooltip
-   title="Hello World"
--  components={{ Popper: CustomPopper, Tooltip: CustomTooltip, Transition: CustomTransition, Arrow: CustomArrow }}
--  componentsProps={{ popper: { placement: 'top' }, tooltip: { className: 'custom' }, arrow: { className: 'arrow' } }}
--  PopperComponent={CustomPopper}
--  PopperProps={{ disablePortal: true }}
--  TransitionComponent={CustomTransition}
--  TransitionProps={{ timeout: 500 }}
-+  slots={{ popper: CustomPopper, tooltip: CustomTooltip, transition: CustomTransition, arrow: CustomArrow }}
-+  slotProps={{
-+    popper: { placement: 'top', disablePortal: true },
-+    tooltip: { className: 'custom' },
-+    transition: { timeout: 500 },
-+    arrow: { className: 'arrow' },
-+  }}
- />
+       },
+     },
+   },
+ });
 ```
 
 #### Alert deprecated props removed
@@ -630,6 +598,25 @@ Use `sx={{ opacity : "0.6" }}` (or any opacity):
  />
 ```
 
+#### FormControlLabel deprecated props removed
+
+Use the [form-control-label-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#form-control-label-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/form-control-label-props <path>
+```
+
+The following deprecated prop has been removed:
+
+- `componentsProps` — use `slotProps` instead
+
+```diff
+ <FormControlLabel
+-  componentsProps={{ typography: { fontWeight: 'bold' } }}
++  slotProps={{ typography: { fontWeight: 'bold' } }}
+ />
+```
+
 #### Popper deprecated props removed
 
 Use the [popper-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#popper-props) below to migrate the code as described in the following section:
@@ -738,8 +725,6 @@ Use the `slotProps` prop instead:
 +      open: true,
 +      classes: { tooltip: 'custom' },
 +    },
-+  }}
- />
 ```
 
 #### Tabs deprecated props removed
@@ -771,22 +756,99 @@ The following deprecated props have been removed:
  />
 ```
 
-#### FormControlLabel deprecated props removed
+#### TextField deprecated props removed
 
-Use the [form-control-label-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#form-control-label-props) below to migrate the code as described in the following section:
+Use the [text-field-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#text-field-props) below to migrate the code as described in the following section:
 
 ```bash
-npx @mui/codemod@latest deprecations/form-control-label-props <path>
+npx @mui/codemod@latest deprecations/text-field-props <path>
 ```
 
-The following deprecated prop has been removed:
+The following deprecated props have been removed from the `TextField` component:
 
-- `componentsProps` — use `slotProps` instead
+- `InputProps` → use `slotProps.input`
+- `inputProps` → use `slotProps.htmlInput`
+- `SelectProps` → use `slotProps.select`
+- `InputLabelProps` → use `slotProps.inputLabel`
+- `FormHelperTextProps` → use `slotProps.formHelperText`
 
 ```diff
- <FormControlLabel
--  componentsProps={{ typography: { fontWeight: 'bold' } }}
-+  slotProps={{ typography: { fontWeight: 'bold' } }}
+ <TextField
+-  InputProps={CustomInputProps}
+-  inputProps={CustomHtmlInputProps}
+-  SelectProps={CustomSelectProps}
+-  InputLabelProps={CustomInputLabelProps}
+-  FormHelperTextProps={CustomFormHelperTextProps}
++  slotProps={{
++    input: CustomInputProps,
++    htmlInput: CustomHtmlInputProps,
++    select: CustomSelectProps,
++    inputLabel: CustomInputLabelProps,
++    formHelperText: CustomFormHelperTextProps,
++  }}
+ />
+```
+
+Use the [autocomplete-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#autocomplete-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/autocomplete-props <path>
+```
+
+If you render a `TextField` from `Autocomplete`, the `params` shape also changed to match the new `TextField` API:
+
+```diff
+ <Autocomplete
+   renderInput={(params) => (
+     <TextField
+       {...params}
+-      inputProps={{
+-        ...params.inputProps,
+-        autoComplete: 'new-password',
++      slotProps={{
++        ...params.slotProps,
++        htmlInput: {
++          ...params.slotProps.htmlInput,
++          autoComplete: 'new-password',
++        },
+       }}
+     />
+   )}
+```
+
+#### Tooltip deprecated props removed
+
+Use the [tooltip-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#tooltip-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/tooltip-props <path>
+```
+
+The following deprecated props have been removed from the `Tooltip` component:
+
+- `components` → use `slots`
+- `componentsProps` → use `slotProps`
+- `PopperComponent` → use `slots.popper`
+- `PopperProps` → use `slotProps.popper`
+- `TransitionComponent` → use `slots.transition`
+- `TransitionProps` → use `slotProps.transition`
+
+```diff
+ <Tooltip
+   title="Hello World"
+-  components={{ Popper: CustomPopper, Tooltip: CustomTooltip, Transition: CustomTransition, Arrow: CustomArrow }}
+-  componentsProps={{ popper: { placement: 'top' }, tooltip: { className: 'custom' }, arrow: { className: 'arrow' } }}
+-  PopperComponent={CustomPopper}
+-  PopperProps={{ disablePortal: true }}
+-  TransitionComponent={CustomTransition}
+-  TransitionProps={{ timeout: 500 }}
++  slots={{ popper: CustomPopper, tooltip: CustomTooltip, transition: CustomTransition, arrow: CustomArrow }}
++  slotProps={{
++    popper: { placement: 'top', disablePortal: true },
++    tooltip: { className: 'custom' },
++    transition: { timeout: 500 },
++    arrow: { className: 'arrow' },
++  }}
  />
 ```
 
