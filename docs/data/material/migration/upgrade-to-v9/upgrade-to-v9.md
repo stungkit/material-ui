@@ -709,6 +709,28 @@ Use `sx={{ opacity : "0.6" }}` (or any opacity):
  />
 ```
 
+#### Popper deprecated props removed
+
+Use the [popper-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#popper-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/popper-props <path>
+```
+
+The following deprecated props have been removed:
+
+- `components` — use `slots` instead
+- `componentsProps` — use `slotProps` instead
+
+```diff
+ <Popper
+-  components={{ Root: CustomRoot }}
+-  componentsProps={{ root: { className: 'custom' } }}
++  slots={{ root: CustomRoot }}
++  slotProps={{ root: { className: 'custom' } }}
+ />
+```
+
 #### Tabs deprecated props removed
 
 Use the [tabs-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#tabs-props) below to migrate the code as described in the following section:
