@@ -1494,6 +1494,12 @@ If you were using these deprecated class names as `styleOverrides` keys in your 
 
 #### SpeedDial deprecated props removed
 
+Use the [speed-dial-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#speed-dial-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/speed-dial-props <path>
+```
+
 The deprecated `SpeedDial` props have been removed.
 Use the `slots` and `slotProps` props instead:
 
@@ -1507,6 +1513,12 @@ Use the `slots` and `slotProps` props instead:
 ```
 
 #### SpeedDialAction deprecated props removed
+
+Use the [speed-dial-action-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#speed-dial-action-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/speed-dial-action-props <path>
+```
 
 The deprecated `SpeedDialAction` props have been removed.
 Use the `slotProps` prop instead:
@@ -1529,6 +1541,12 @@ Use the `slotProps` prop instead:
 ```
 
 #### Menu deprecated props removed
+
+Use the [menu-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#menu-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/menu-props <path>
+```
 
 The following deprecated props have been removed:
 
@@ -1612,6 +1630,12 @@ The following deprecated props have been removed from the `Modal` component:
 ```
 
 #### Popover deprecated props removed
+
+Use the [popover-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#popover-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/popover-props <path>
+```
 
 The following deprecated props have been removed:
 
