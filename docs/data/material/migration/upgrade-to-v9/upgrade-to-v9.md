@@ -1124,6 +1124,86 @@ The following deprecated `Snackbar` props have been removed:
  />
 ```
 
+#### StepConnector deprecated CSS classes removed
+
+Use the [step-connector-classes codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#step-connector-classes) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/step-connector-classes <path>
+```
+
+The following deprecated `StepConnector` CSS classes have been removed:
+
+- `lineHorizontal` → use `.MuiStepConnector-horizontal .MuiStepConnector-line`
+- `lineVertical` → use `.MuiStepConnector-vertical .MuiStepConnector-line`
+
+If you were using these deprecated class names as `styleOverrides` keys in your theme, use the `variants` array in the `line` override instead:
+
+```diff
+ const theme = createTheme({
+   components: {
+     MuiStepConnector: {
+       styleOverrides: {
+-        lineHorizontal: { borderTopWidth: 3 },
+-        lineVertical: { borderLeftWidth: 3 },
++        line: {
++          variants: [
++            { props: { orientation: 'horizontal' }, style: { borderTopWidth: 3 } },
++            { props: { orientation: 'vertical' }, style: { borderLeftWidth: 3 } },
++          ],
++        },
+       },
+     },
+   },
+ });
+```
+
+#### StepContent deprecated props removed
+
+Use the [step-content-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#step-content-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/step-content-props <path>
+```
+
+The following deprecated `StepContent` props have been removed:
+
+- `TransitionComponent` → use `slots.transition` instead
+- `TransitionProps` → use `slotProps.transition` instead
+
+```diff
+ <StepContent
+-  TransitionComponent={CustomTransition}
+-  TransitionProps={{ unmountOnExit: true }}
++  slots={{ transition: CustomTransition }}
++  slotProps={{ transition: { unmountOnExit: true } }}
+ />
+```
+
+#### StepLabel deprecated props removed
+
+Use the [step-label-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#step-label-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/step-label-props <path>
+```
+
+The following deprecated `StepLabel` props have been removed:
+
+- `componentsProps` → use `slotProps` instead
+- `StepIconComponent` → use `slots.stepIcon` instead
+- `StepIconProps` → use `slotProps.stepIcon` instead
+
+```diff
+ <StepLabel
+-  StepIconComponent={CustomIcon}
+-  StepIconProps={{ error: true }}
+-  componentsProps={{ label: { className: 'my-label' } }}
++  slots={{ stepIcon: CustomIcon }}
++  slotProps={{ stepIcon: { error: true }, label: { className: 'my-label' } }}
+ />
+```
+
 #### TablePagination deprecated props removed
 
 Use the [table-pagination-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#table-pagination-props) below to migrate the code as described in the following section:
