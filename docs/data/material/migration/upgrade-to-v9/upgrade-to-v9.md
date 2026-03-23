@@ -1237,6 +1237,40 @@ The following deprecated props have been removed:
  />
 ```
 
+#### ToggleButtonGroup deprecated CSS classes removed
+
+Use the [toggle-button-group-classes codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#toggle-button-group-classes) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/toggle-button-group-classes <path>
+```
+
+The following deprecated `ToggleButtonGroup` CSS classes have been removed:
+
+- `groupedHorizontal` → use `.MuiToggleButtonGroup-horizontal > .MuiToggleButtonGroup-grouped`
+- `groupedVertical` → use `.MuiToggleButtonGroup-vertical > .MuiToggleButtonGroup-grouped`
+
+If you were using these deprecated class names as `styleOverrides` keys in your theme, use the `variants` array in the `grouped` override instead:
+
+```diff
+ const theme = createTheme({
+   components: {
+     MuiToggleButtonGroup: {
+       styleOverrides: {
+-        groupedHorizontal: { borderRadius: 0 },
+-        groupedVertical: { borderRadius: 0 },
++        grouped: {
++          variants: [
++            { props: { orientation: 'horizontal' }, style: { borderRadius: 0 } },
++            { props: { orientation: 'vertical' }, style: { borderRadius: 0 } },
++          ],
++        },
+       },
+     },
+   },
+ });
+```
+
 #### TextField deprecated props removed
 
 Use the [text-field-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#text-field-props) below to migrate the code as described in the following section:
