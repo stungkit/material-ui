@@ -910,6 +910,75 @@ The following deprecated prop has been removed:
  />
 ```
 
+#### ListItem deprecated props removed
+
+Use the [list-item-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#list-item-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/list-item-props <path>
+```
+
+The following deprecated props have been removed:
+
+- `components` — use `slots` instead
+- `componentsProps` — use `slotProps` instead
+- `ContainerComponent` — use `component` or `slots.root` instead
+- `ContainerProps` — use `slotProps.root` instead
+
+```diff
+ <ListItem
+-  components={{ Root: CustomRoot }}
+-  componentsProps={{ root: { className: 'custom' } }}
++  slots={{ root: CustomRoot }}
++  slotProps={{ root: { className: 'custom' } }}
+ />
+```
+
+The theming `styleOverrides` key `secondaryAction` now targets the `secondaryAction` slot instead of the root slot.
+
+```diff
+ const theme = createTheme({
+   components: {
+     MuiListItem: {
+       styleOverrides: {
+-        secondaryAction: {
+-          [`& .${listItemClasses.secondaryAction}`]: {
+-            // styles
+-          },
+-        },
++        secondaryAction: {
++          // styles applied directly to the secondaryAction slot
++        },
+       },
+     },
+   },
+ });
+```
+
+#### ListItemText deprecated props removed
+
+Use the [list-item-text-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#list-item-text-props) below to migrate the code as described in the following section:
+
+```bash
+npx @mui/codemod@latest deprecations/list-item-text-props <path>
+```
+
+The following deprecated props have been removed:
+
+- `primaryTypographyProps` — use `slotProps.primary` instead
+- `secondaryTypographyProps` — use `slotProps.secondary` instead
+
+```diff
+ <ListItemText
+-  primaryTypographyProps={{ variant: 'h6' }}
+-  secondaryTypographyProps={{ color: 'textSecondary' }}
++  slotProps={{
++    primary: { variant: 'h6' },
++    secondary: { color: 'textSecondary' },
++  }}
+ />
+```
+
 #### PaginationItem deprecated props removed
 
 Use the [pagination-item-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#pagination-item-props) below to migrate the code as described in the following section:
