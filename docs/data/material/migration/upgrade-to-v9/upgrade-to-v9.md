@@ -238,9 +238,12 @@ If you were using `MuiTouchRipple` in your theme, remove it and use global CSS w
  });
 ```
 
-### JSDOM support
+### jsdom support
 
-v9 removes all usage of `process.env.NODE_ENV === 'test'`. The `NODE_ENV` variable will exclusively be used for for tree-shaking. Our libraries have been updated to auto-detect DOM environments that don't support layout such as [JSDOM](https://github.com/jsdom/jsdom) and [happy-dom](https://github.com/capricorn86/happy-dom) through user agent sniffing.
+The behavior of the components in test environments has been improved to be more reliable.
+The use of `process.env.NODE_ENV === 'test'` was replaced with feature detection or user-agent sniffing wherever it's more accurate with the intention of the code.
+This change shouldn't impact most users, but it might lead to unintended CI changes.
+For example, the code has been updated to auto-detect DOM environments that don't support layout, such as [jsdom](https://github.com/jsdom/jsdom) and [happy-dom](https://github.com/capricorn86/happy-dom), with user-agent sniffing.
 
 ### Stepper, Step and StepButton
 
