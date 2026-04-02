@@ -23,6 +23,7 @@ catalogs:
       version: 4.2.0
 
 overrides:
+  caniuse-lite: ^1.0.30001781
   '@babel/core': 7.29.0
   '@babel/plugin-transform-runtime': ^7.29.0
   '@babel/preset-env': ^7.29.2
@@ -78,10 +79,10 @@ importers:
         version: 2.0.3(eslint@10.1.0(jiti@2.6.1))
       '@mui-internal/api-docs-builder':
         specifier: workspace:^
-        version: link:packages/api-docs-builder
+        version: link:packages-internal/api-docs-builder
       '@mui-internal/api-docs-builder-core':
         specifier: workspace:^
-        version: link:packages/api-docs-builder-core
+        version: link:packages-internal/api-docs-builder-core
       '@mui/internal-babel-plugin-minify-errors':
         specifier: 2.0.8-canary.24
         version: 2.0.8-canary.24(@babel/core@7.29.0)
@@ -307,15 +308,15 @@ importers:
       '@mui/base':
         specifier: 5.0.0-beta.70
         version: 5.0.0-beta.70(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      '@mui/docs':
-        specifier: workspace:*
-        version: link:../packages/mui-docs/build
       '@mui/icons-material':
         specifier: workspace:*
         version: link:../packages/mui-icons-material/build
+      '@mui/internal-core-docs':
+        specifier: workspace:*
+        version: link:../packages-internal/core-docs/build
       '@mui/internal-markdown':
         specifier: workspace:^
-        version: link:../packages/markdown
+        version: link:../packages-internal/markdown
       '@mui/lab':
         specifier: workspace:*
         version: link:../packages/mui-lab/build
@@ -535,7 +536,7 @@ importers:
         version: 7.28.5(@babel/core@7.29.0)
       '@mui-internal/api-docs-builder':
         specifier: workspace:^
-        version: link:../packages/api-docs-builder
+        version: link:../packages-internal/api-docs-builder
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:../packages-internal/docs-utils
@@ -612,80 +613,7 @@ importers:
         specifier: 18.0.0
         version: 18.0.0
 
-  packages-internal/docs-utils:
-    dependencies:
-      rimraf:
-        specifier: ^6.1.3
-        version: 6.1.3
-      typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
-
-  packages-internal/scripts:
-    dependencies:
-      '@babel/core':
-        specifier: 7.29.0
-        version: 7.29.0
-      '@babel/plugin-syntax-class-properties':
-        specifier: ^7.12.13
-        version: 7.12.13(@babel/core@7.29.0)
-      '@babel/plugin-syntax-jsx':
-        specifier: ^7.28.6
-        version: 7.28.6(@babel/core@7.29.0)
-      '@babel/plugin-syntax-typescript':
-        specifier: ^7.28.6
-        version: 7.28.6(@babel/core@7.29.0)
-      '@babel/types':
-        specifier: ^7.29.0
-        version: 7.29.0
-      '@mui/internal-docs-utils':
-        specifier: workspace:^
-        version: link:../docs-utils
-      doctrine:
-        specifier: ^3.0.0
-        version: 3.0.0
-      es-toolkit:
-        specifier: ^1.45.1
-        version: 1.45.1
-      typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
-    devDependencies:
-      '@babel/register':
-        specifier: 7.28.6
-        version: 7.28.6(@babel/core@7.29.0)
-      '@types/babel__core':
-        specifier: 7.20.5
-        version: 7.20.5
-      '@types/chai':
-        specifier: 5.2.3
-        version: 5.2.3
-      '@types/doctrine':
-        specifier: 0.0.9
-        version: 0.0.9
-      '@types/node':
-        specifier: 20.19.37
-        version: 20.19.37
-      '@types/react':
-        specifier: 19.2.14
-        version: 19.2.14
-      '@types/uuid':
-        specifier: 10.0.0
-        version: 10.0.0
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
-      fast-glob:
-        specifier: 3.3.3
-        version: 3.3.3
-      prettier:
-        specifier: 3.8.1
-        version: 3.8.1
-      rimraf:
-        specifier: 6.1.3
-        version: 6.1.3
-
-  packages/api-docs-builder:
+  packages-internal/api-docs-builder:
     dependencies:
       '@babel/core':
         specifier: 7.29.0
@@ -701,7 +629,7 @@ importers:
         version: 7.29.0
       '@mui/internal-docs-utils':
         specifier: workspace:^
-        version: link:../../packages-internal/docs-utils
+        version: link:../docs-utils
       '@mui/internal-markdown':
         specifier: workspace:^
         version: link:../markdown
@@ -761,7 +689,7 @@ importers:
         specifier: 21.0.3
         version: 21.0.3
 
-  packages/api-docs-builder-core:
+  packages-internal/api-docs-builder-core:
     dependencies:
       '@mui-internal/api-docs-builder':
         specifier: workspace:^
@@ -795,75 +723,7 @@ importers:
         specifier: 5.9.3
         version: 5.9.3
 
-  packages/markdown:
-    dependencies:
-      '@babel/runtime':
-        specifier: ^7.29.2
-        version: 7.29.2
-      es-toolkit:
-        specifier: ^1.45.1
-        version: 1.45.1
-      marked:
-        specifier: ^17.0.5
-        version: 17.0.5
-      prismjs:
-        specifier: ^1.30.0
-        version: 1.30.0
-    devDependencies:
-      '@types/chai':
-        specifier: 5.2.3
-        version: 5.2.3
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
-
-  packages/mui-codemod:
-    dependencies:
-      '@babel/core':
-        specifier: 7.29.0
-        version: 7.29.0
-      '@babel/runtime':
-        specifier: ^7.29.2
-        version: 7.29.2
-      '@babel/traverse':
-        specifier: ^7.29.0
-        version: 7.29.0
-      '@mui/material-v5':
-        specifier: npm:@mui/material@5.18.0
-        version: '@mui/material@5.18.0(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)'
-      jscodeshift:
-        specifier: ^17.1.2
-        version: 17.1.2(@babel/preset-env@7.29.2(@babel/core@7.29.0))
-      jscodeshift-add-imports:
-        specifier: ^1.0.11
-        version: 1.0.11(jscodeshift@17.1.2(@babel/preset-env@7.29.2(@babel/core@7.29.0)))
-      postcss:
-        specifier: ^8.5.8
-        version: 8.5.8
-      postcss-cli:
-        specifier: ^11.0.1
-        version: 11.0.1(jiti@2.6.1)(postcss@8.5.8)(tsx@4.21.0)
-      yargs:
-        specifier: ^17.7.2
-        version: 17.7.2
-    devDependencies:
-      '@material-ui/core':
-        specifier: ^4.12.4
-        version: 4.12.4(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      '@types/chai':
-        specifier: 5.2.3
-        version: 5.2.3
-      '@types/jscodeshift':
-        specifier: 0.12.0
-        version: 0.12.0
-      chai:
-        specifier: 6.2.2
-        version: 6.2.2
-    publishDirectory: build
-
-  packages/mui-core-downloads-tracker: {}
-
-  packages/mui-docs:
+  packages-internal/core-docs:
     dependencies:
       '@babel/runtime':
         specifier: ^7.29.2
@@ -934,10 +794,10 @@ importers:
         version: link:../api-docs-builder
       '@mui/icons-material':
         specifier: workspace:*
-        version: link:../mui-icons-material/build
+        version: link:../../packages/mui-icons-material/build
       '@mui/material':
         specifier: workspace:*
-        version: link:../mui-material/build
+        version: link:../../packages/mui-material/build
       '@types/chai':
         specifier: 5.2.3
         version: 5.2.3
@@ -966,6 +826,149 @@ importers:
         specifier: 19.2.4
         version: 19.2.4
     publishDirectory: build
+
+  packages-internal/docs-utils:
+    dependencies:
+      rimraf:
+        specifier: ^6.1.3
+        version: 6.1.3
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+
+  packages-internal/markdown:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.29.2
+        version: 7.29.2
+      es-toolkit:
+        specifier: ^1.45.1
+        version: 1.45.1
+      marked:
+        specifier: ^17.0.5
+        version: 17.0.5
+      prismjs:
+        specifier: ^1.30.0
+        version: 1.30.0
+    devDependencies:
+      '@types/chai':
+        specifier: 5.2.3
+        version: 5.2.3
+      chai:
+        specifier: 6.2.2
+        version: 6.2.2
+
+  packages-internal/scripts:
+    dependencies:
+      '@babel/core':
+        specifier: 7.29.0
+        version: 7.29.0
+      '@babel/plugin-syntax-class-properties':
+        specifier: ^7.12.13
+        version: 7.12.13(@babel/core@7.29.0)
+      '@babel/plugin-syntax-jsx':
+        specifier: ^7.28.6
+        version: 7.28.6(@babel/core@7.29.0)
+      '@babel/plugin-syntax-typescript':
+        specifier: ^7.28.6
+        version: 7.28.6(@babel/core@7.29.0)
+      '@babel/types':
+        specifier: ^7.29.0
+        version: 7.29.0
+      '@mui/internal-docs-utils':
+        specifier: workspace:^
+        version: link:../docs-utils
+      doctrine:
+        specifier: ^3.0.0
+        version: 3.0.0
+      es-toolkit:
+        specifier: ^1.45.1
+        version: 1.45.1
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+    devDependencies:
+      '@babel/register':
+        specifier: 7.28.6
+        version: 7.28.6(@babel/core@7.29.0)
+      '@types/babel__core':
+        specifier: 7.20.5
+        version: 7.20.5
+      '@types/chai':
+        specifier: 5.2.3
+        version: 5.2.3
+      '@types/doctrine':
+        specifier: 0.0.9
+        version: 0.0.9
+      '@types/node':
+        specifier: 20.19.37
+        version: 20.19.37
+      '@types/react':
+        specifier: 19.2.14
+        version: 19.2.14
+      '@types/uuid':
+        specifier: 10.0.0
+        version: 10.0.0
+      chai:
+        specifier: 6.2.2
+        version: 6.2.2
+      fast-glob:
+        specifier: 3.3.3
+        version: 3.3.3
+      prettier:
+        specifier: 3.8.1
+        version: 3.8.1
+      rimraf:
+        specifier: 6.1.3
+        version: 6.1.3
+
+  packages-internal/waterfall: {}
+
+  packages/mui-codemod:
+    dependencies:
+      '@babel/core':
+        specifier: 7.29.0
+        version: 7.29.0
+      '@babel/runtime':
+        specifier: ^7.29.2
+        version: 7.29.2
+      '@babel/traverse':
+        specifier: ^7.29.0
+        version: 7.29.0
+      '@mui/material-v5':
+        specifier: npm:@mui/material@5.18.0
+        version: '@mui/material@5.18.0(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)'
+      jscodeshift:
+        specifier: ^17.1.2
+        version: 17.1.2(@babel/preset-env@7.29.2(@babel/core@7.29.0))
+      jscodeshift-add-imports:
+        specifier: ^1.0.11
+        version: 1.0.11(jscodeshift@17.1.2(@babel/preset-env@7.29.2(@babel/core@7.29.0)))
+      postcss:
+        specifier: ^8.5.8
+        version: 8.5.8
+      postcss-cli:
+        specifier: ^11.0.1
+        version: 11.0.1(jiti@2.6.1)(postcss@8.5.8)(tsx@4.21.0)
+      yargs:
+        specifier: ^17.7.2
+        version: 17.7.2
+    devDependencies:
+      '@material-ui/core':
+        specifier: ^4.12.4
+        version: 4.12.4(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      '@types/chai':
+        specifier: 5.2.3
+        version: 5.2.3
+      '@types/jscodeshift':
+        specifier: 0.12.0
+        version: 0.12.0
+      chai:
+        specifier: 6.2.2
+        version: 6.2.2
+    publishDirectory: build
+
+  packages/mui-core-downloads-tracker: {}
 
   packages/mui-envinfo:
     dependencies:
@@ -1020,7 +1023,7 @@ importers:
         version: link:build
       '@mui/internal-waterfall':
         specifier: workspace:^
-        version: link:../waterfall
+        version: link:../../packages-internal/waterfall
       '@mui/material':
         specifier: workspace:*
         version: link:../mui-material/build
@@ -1527,8 +1530,6 @@ importers:
         specifier: 21.0.3
         version: 21.0.3
     publishDirectory: build
-
-  packages/waterfall: {}
 
   test:
     dependencies:
@@ -2732,8 +2733,8 @@ packages:
   '@emnapi/core@1.9.0':
     resolution: {integrity: sha512-0DQ98G9ZQZOxfUcQn1waV2yS8aWdZ6kJMbYCJB3oUBecjWYO1fqJ+a1DRfPF3O5JEkwqwP1A9QEN/9mYm2Yd0w==}
 
-  '@emnapi/runtime@1.9.1':
-    resolution: {integrity: sha512-VYi5+ZVLhpgK4hQ0TAjiQiZ6ol0oe4mBx7mVv7IflsiEp0OWoVsp/+f9Vc1hOhE0TtkORVrI1GvzyreqpgWtkA==}
+  '@emnapi/runtime@1.7.1':
+    resolution: {integrity: sha512-PVtJr5CmLwYAU9PZDMITZoR5iAOShYREoR45EyyLrbntV50mdePTgUn4AmOw90Ifcj+x2kRjdzr1HP3RrNiHGA==}
 
   '@emnapi/wasi-threads@1.2.0':
     resolution: {integrity: sha512-N10dEJNSsUx41Z6pZsXU8FjPjpBEplgH24sfkmITrBED1/U2Esum9F3lfLrMjKHHjmi557zQn7kR9R+XWXu5Rg==}
@@ -3100,8 +3101,8 @@ packages:
     resolution: {integrity: sha512-H9XAx3hc0BQHY6l+IFSWHDySypcXsvsuLhgYLUGywmJ5pswRVQJUHpOsobnLYp2ZUaUlKiKDrgWWhosOwAEM8Q==}
     engines: {node: '>=6.9.0'}
 
-  '@img/colour@1.1.0':
-    resolution: {integrity: sha512-Td76q7j57o/tLVdgS746cYARfSyxk8iEfRxewL9h4OMzYhbW4TAcppl0mT4eyqXddh6L/jwoM75mo7ixa/pCeQ==}
+  '@img/colour@1.0.0':
+    resolution: {integrity: sha512-A5P/LfWGFSl6nsckYtjw9da+19jB8hkJ6ACTGcDfEJ0aE+l2n2El7dsVM7UVHZQ9s2lmYMWlrS21YLy2IR1LUw==}
     engines: {node: '>=18'}
 
   '@img/sharp-darwin-arm64@0.34.5':
@@ -8077,8 +8078,8 @@ packages:
   graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
 
-  graphql@16.13.1:
-    resolution: {integrity: sha512-gGgrVCoDKlIZ8fIqXBBb0pPKqDgki0Z/FSKNiQzSGj2uEYHr1tq5wmBegGwJx6QB5S5cM0khSBpi/JFHMCvsmQ==}
+  graphql@16.13.2:
+    resolution: {integrity: sha512-5bJ+nf/UCpAjHM8i06fl7eLyVC9iuNAjm9qzkiu2ZGhM0VscSvS6WDPfAwkdkBuoXGM9FJSbKl6wylMwP9Ktig==}
     engines: {node: ^12.22.0 || ^14.16.0 || ^16.0.0 || >=17.0.0}
 
   handlebars@4.7.8:
@@ -13890,7 +13891,7 @@ snapshots:
       '@emnapi/wasi-threads': 1.2.0
       tslib: 2.8.1
 
-  '@emnapi/runtime@1.9.1':
+  '@emnapi/runtime@1.7.1':
     dependencies:
       tslib: 2.8.1
 
@@ -14218,7 +14219,7 @@ snapshots:
 
   '@hutson/parse-repository-url@3.0.2': {}
 
-  '@img/colour@1.1.0': {}
+  '@img/colour@1.0.0': {}
 
   '@img/sharp-darwin-arm64@0.34.5':
     optionalDependencies:
@@ -14302,7 +14303,7 @@ snapshots:
 
   '@img/sharp-wasm32@0.34.5':
     dependencies:
-      '@emnapi/runtime': 1.9.1
+      '@emnapi/runtime': 1.7.1
     optional: true
 
   '@img/sharp-win32-arm64@0.34.5':
@@ -15423,20 +15424,20 @@ snapshots:
   '@napi-rs/wasm-runtime@0.2.11':
     dependencies:
       '@emnapi/core': 1.9.0
-      '@emnapi/runtime': 1.9.1
+      '@emnapi/runtime': 1.7.1
       '@tybys/wasm-util': 0.9.0
     optional: true
 
   '@napi-rs/wasm-runtime@0.2.4':
     dependencies:
       '@emnapi/core': 1.9.0
-      '@emnapi/runtime': 1.9.1
+      '@emnapi/runtime': 1.7.1
       '@tybys/wasm-util': 0.9.0
 
   '@napi-rs/wasm-runtime@1.1.1':
     dependencies:
       '@emnapi/core': 1.9.0
-      '@emnapi/runtime': 1.9.1
+      '@emnapi/runtime': 1.7.1
       '@tybys/wasm-util': 0.10.1
     optional: true
 
@@ -19747,7 +19748,7 @@ snapshots:
 
   graceful-fs@4.2.11: {}
 
-  graphql@16.13.1:
+  graphql@16.13.2:
     optional: true
 
   handlebars@4.7.8:
@@ -21475,7 +21476,7 @@ snapshots:
       '@open-draft/until': 2.1.0
       '@types/cookie': 0.6.0
       '@types/statuses': 2.0.6
-      graphql: 16.13.1
+      graphql: 16.13.2
       headers-polyfill: 4.0.3
       is-node-process: 1.2.0
       outvariant: 1.4.3
@@ -23163,7 +23164,7 @@ snapshots:
 
   sharp@0.34.5:
     dependencies:
-      '@img/colour': 1.1.0
+      '@img/colour': 1.0.0
       detect-libc: 2.1.2
       semver: 7.7.4
     optionalDependencies:
