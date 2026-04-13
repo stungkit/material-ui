@@ -58,6 +58,7 @@ export function AppFrameBanner() {
     <Link
       href={href}
       target="_blank"
+      rel="noopener"
       variant="caption"
       sx={[
         (theme) => ({
